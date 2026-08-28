@@ -29,7 +29,7 @@ export default function NewPostPage() {
 
           <p>Write, preview, and publish a new essay.</p>
         </header>
-
+        S
         <PostEditor />
       </Container>
     </main>
