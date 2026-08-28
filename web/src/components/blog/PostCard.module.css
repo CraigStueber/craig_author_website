@@ -1,0 +1,159 @@
+.card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 5rem);
+
+  padding: clamp(3rem, 6vw, 5rem) 0;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.card:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* -------------------------------------------------------
+   IMAGE
+------------------------------------------------------- */
+
+.imageLink {
+  display: block;
+
+  min-width: 0;
+}
+
+.image,
+.imagePlaceholder {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  border-radius: var(--radius-sm);
+
+  object-fit: cover;
+}
+
+.image {
+  background: var(--color-surface);
+}
+
+.imagePlaceholder {
+  display: flex;
+  align-items: flex-end;
+
+  padding: var(--space-lg);
+
+  background: linear-gradient(145deg, #292723, #181714);
+
+  color: #c98655;
+
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+}
+
+/* -------------------------------------------------------
+   CONTENT
+------------------------------------------------------- */
+
+.content {
+  align-self: center;
+
+  min-width: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin-bottom: 1rem;
+
+  color: var(--color-text-light);
+
+  font-size: 0.8rem;
+}
+
+.separator {
+  color: var(--color-border-dark);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tags span {
+  color: var(--color-accent);
+
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.content h2 {
+  max-width: 720px;
+  margin: 0 0 1.25rem;
+
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.content h2 a {
+  transition: color var(--transition-fast);
+}
+
+.content h2 a:hover {
+  color: var(--color-accent);
+}
+
+.excerpt {
+  max-width: 650px;
+  margin-bottom: 1.5rem;
+
+  color: var(--color-text-muted);
+
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.readMore {
+  display: inline-flex;
+  align-items: center;
+
+  padding-bottom: 0.2rem;
+
+  border-bottom: 1px solid var(--color-accent);
+
+  color: var(--color-accent);
+
+  font-weight: 600;
+}
+
+.readMore span {
+  margin-left: 0.35rem;
+
+  transition: transform var(--transition-fast);
+}
+
+.readMore:hover span {
+  transform: translateX(4px);
+}
+
+/* -------------------------------------------------------
+   MOBILE
+------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .card {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+
+    padding: 3rem 0;
+  }
+
+  .content h2 {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+}

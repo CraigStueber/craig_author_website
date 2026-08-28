@@ -1,0 +1,135 @@
+.section {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(3rem, 8vw, 8rem);
+
+  max-width: 1050px;
+}
+
+/* -------------------------------------------------------
+   INTRO
+------------------------------------------------------- */
+
+.eyebrow {
+  margin: 0 0 1rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.heading {
+  max-width: 440px;
+  margin: 0;
+
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+/* -------------------------------------------------------
+   CONTENT
+------------------------------------------------------- */
+
+.content {
+  max-width: 650px;
+}
+
+.content p {
+  color: var(--color-text-muted);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.content .lead {
+  margin-bottom: var(--space-xl);
+
+  color: var(--color-text);
+
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  line-height: 1.6;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+
+  margin-top: var(--space-sm);
+  padding-bottom: 0.25rem;
+
+  border-bottom: 1px solid var(--color-accent);
+
+  color: var(--color-accent);
+
+  font-weight: 600;
+
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.link span {
+  margin-left: 0.35rem;
+
+  transition: transform var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.link:hover span {
+  transform: translateX(4px);
+}
+
+/* -------------------------------------------------------
+   TABLET
+------------------------------------------------------- */
+
+@media (max-width: 800px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .heading {
+    max-width: 650px;
+  }
+
+  .content {
+    max-width: 680px;
+  }
+}
+
+/* -------------------------------------------------------
+   MOBILE
+------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  .heading {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  .content p {
+    font-size: 1rem;
+  }
+}

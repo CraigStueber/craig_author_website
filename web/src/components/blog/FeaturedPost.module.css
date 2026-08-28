@@ -1,0 +1,150 @@
+.featuredPost {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+/* IMAGE */
+
+.imageLink {
+  display: block;
+
+  min-width: 0;
+}
+
+.image,
+.imagePlaceholder {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  border-radius: var(--radius-sm);
+
+  object-fit: cover;
+}
+
+.image {
+  display: block;
+
+  background: var(--color-surface);
+}
+
+.imagePlaceholder {
+  display: flex;
+  align-items: flex-end;
+
+  padding: var(--space-xl);
+
+  background: linear-gradient(145deg, #292723, #181714);
+
+  color: #c98655;
+
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+}
+
+/* CONTENT */
+
+.content {
+  min-width: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+
+  margin-bottom: 1.25rem;
+
+  color: var(--color-text-light);
+
+  font-size: 0.82rem;
+}
+
+.separator {
+  color: var(--color-border-dark);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags span {
+  color: var(--color-accent);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.content h2 {
+  margin: 0 0 1.5rem;
+
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.content h2 a {
+  transition: color var(--transition-fast);
+}
+
+.content h2 a:hover {
+  color: var(--color-accent);
+}
+
+.excerpt {
+  max-width: 580px;
+  margin: 0 0 1.75rem;
+
+  color: var(--color-text-muted);
+
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.8;
+}
+
+.readMore {
+  display: inline-flex;
+  align-items: center;
+
+  padding-bottom: 0.2rem;
+
+  border-bottom: 1px solid var(--color-accent);
+
+  color: var(--color-accent);
+
+  font-weight: 600;
+}
+
+.readMore span {
+  margin-left: 0.35rem;
+
+  transition: transform var(--transition-fast);
+}
+
+.readMore:hover span {
+  transform: translateX(4px);
+}
+
+/* TABLET */
+
+@media (max-width: 850px) {
+  .featuredPost {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .featuredPost {
+    gap: var(--space-xl);
+  }
+
+  .content h2 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+}

@@ -1,0 +1,13 @@
+.page {
+  min-height: calc(100vh - var(--header-height));
+
+  padding: clamp(5rem, 9vw, 8rem) 0;
+
+  background: var(--color-background);
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 4rem 0;
+  }
+}

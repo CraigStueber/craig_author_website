@@ -1,0 +1,400 @@
+/* -------------------------------------------------------
+   SHARED
+------------------------------------------------------- */
+
+.eyebrow {
+  margin: 0 0 1rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------
+   OVERVIEW
+------------------------------------------------------- */
+
+.overview {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+
+  background: var(--color-surface-light);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.overviewInner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.sectionIntro h2 {
+  max-width: 540px;
+  margin: 0;
+
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.overviewCopy {
+  max-width: 660px;
+}
+
+.overviewCopy p {
+  color: var(--color-text-muted);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.overviewCopy .lead {
+  color: var(--color-text);
+
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  line-height: 1.6;
+}
+
+/* -------------------------------------------------------
+   PRINCIPLE
+------------------------------------------------------- */
+
+.principle {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+
+  background: var(--color-text);
+  color: var(--color-background);
+}
+
+.principleInner {
+  max-width: 900px;
+}
+
+.principleLabel {
+  margin: 0 0 1.5rem;
+
+  color: #c98655;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.principle blockquote {
+  margin: 0 0 2rem;
+
+  color: var(--color-background);
+
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+}
+
+.principleInner > p:last-child {
+  max-width: 650px;
+  margin: 0;
+
+  color: #c8c0b5;
+
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+/* -------------------------------------------------------
+   JOURNEY
+------------------------------------------------------- */
+
+.journey {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.journeyHeader {
+  max-width: 760px;
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+}
+
+.journeyHeader h2 {
+  margin: 0 0 1.5rem;
+
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.journeyHeader > p:last-child {
+  max-width: 680px;
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.parts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.part {
+  padding: 2.5rem;
+
+  border-right: 1px solid var(--color-border);
+}
+
+.part:first-child {
+  padding-left: 0;
+}
+
+.part:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.partNumber {
+  margin: 0 0 3rem;
+
+  color: var(--color-accent);
+
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+}
+
+.part h3 {
+  margin: 0 0 1rem;
+
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.part > p:last-child {
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.75;
+}
+
+/* -------------------------------------------------------
+   THEMES
+------------------------------------------------------- */
+
+.themes {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+
+  background: var(--color-surface-light);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.themesHeader {
+  max-width: 760px;
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+}
+
+.themesHeader h2 {
+  margin: 0;
+
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.themeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.theme {
+  min-height: 230px;
+  padding: 2rem;
+
+  border-top: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+.theme:nth-child(3n + 1) {
+  padding-left: 0;
+}
+
+.theme:nth-child(3n) {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.theme h3 {
+  margin: 0 0 1rem;
+
+  color: var(--color-accent);
+
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.theme p {
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.75;
+}
+
+/* -------------------------------------------------------
+   CLOSING
+------------------------------------------------------- */
+
+.closing {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+}
+
+.closingInner {
+  max-width: 1000px;
+}
+
+.closing h2 {
+  max-width: 900px;
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.045em;
+}
+
+.closingCopy {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+
+  max-width: 850px;
+}
+
+.closingCopy p {
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* -------------------------------------------------------
+   TABLET
+------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .overviewInner {
+    grid-template-columns: 1fr;
+  }
+
+  .parts {
+    grid-template-columns: 1fr;
+  }
+
+  .part {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+
+    padding: 2rem 0;
+
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .partNumber {
+    margin: 0;
+  }
+
+  .part h3,
+  .part > p:last-child {
+    grid-column: 2;
+  }
+
+  .themeGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .theme:nth-child(3n + 1),
+  .theme:nth-child(3n) {
+    padding-inline: 2rem;
+    border-right: 1px solid var(--color-border);
+  }
+
+  .theme:nth-child(2n + 1) {
+    padding-left: 0;
+  }
+
+  .theme:nth-child(2n) {
+    padding-right: 0;
+    border-right: 0;
+  }
+}
+
+/* -------------------------------------------------------
+   MOBILE
+------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .overview,
+  .journey,
+  .themes,
+  .closing {
+    padding: 4.5rem 0;
+  }
+
+  .principle {
+    padding: 4.5rem 0;
+  }
+
+  .sectionIntro h2 br,
+  .closing h2 br {
+    display: none;
+  }
+
+  .parts {
+    display: block;
+  }
+
+  .part {
+    display: block;
+
+    padding: 2rem 0;
+  }
+
+  .partNumber {
+    margin-bottom: 1rem;
+  }
+
+  .themeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme,
+  .theme:nth-child(3n + 1),
+  .theme:nth-child(3n),
+  .theme:nth-child(2n + 1),
+  .theme:nth-child(2n) {
+    min-height: auto;
+    padding: 1.75rem 0;
+
+    border-right: 0;
+  }
+
+  .closingCopy {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}

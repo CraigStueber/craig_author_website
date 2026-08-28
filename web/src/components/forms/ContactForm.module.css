@@ -1,0 +1,137 @@
+.form {
+  width: 100%;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+
+  margin-bottom: var(--space-lg);
+}
+
+.field label {
+  color: var(--color-text);
+
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+
+  background: #ffffff;
+  border: 1px solid #c9c0b2;
+  border-radius: var(--radius-sm);
+
+  color: #1d1c19;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.field input,
+.field select {
+  min-height: 52px;
+  padding: 0.75rem 0.9rem;
+}
+
+.field textarea {
+  min-height: 220px;
+  padding: 0.9rem;
+
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  background: #ffffff;
+  border-color: var(--color-accent);
+
+  box-shadow: 0 0 0 3px rgba(151, 92, 53, 0.12);
+}
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  opacity: 0.7;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.button {
+  min-height: 50px;
+  padding: 0.75rem 1.4rem;
+
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+
+  color: #ffffff;
+
+  font-weight: 600;
+
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.button:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.message,
+.error {
+  margin: 0;
+
+  font-size: 0.9rem;
+}
+
+.message {
+  color: var(--color-text-muted);
+}
+
+.error {
+  color: #8b352d;
+}
+
+@media (max-width: 650px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,149 @@
+.eyebrow {
+  margin: 0 0 1rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* HERO */
+
+.hero {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.heading {
+  margin: 0 0 1.5rem;
+
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.introduction {
+  max-width: 720px;
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  line-height: 1.8;
+}
+
+/* CONTACT */
+
+.contact {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+
+  background: var(--color-surface-light);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.details h2 {
+  max-width: 420px;
+  margin: 0 0 1.5rem;
+
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.details > p:not(.eyebrow) {
+  max-width: 440px;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.8;
+}
+
+.direct {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+
+  border-top: 1px solid var(--color-border);
+}
+
+.label {
+  margin: 0 0 0.3rem;
+
+  color: var(--color-text-light);
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.direct a {
+  color: var(--color-accent);
+
+  font-weight: 600;
+}
+
+.form {
+  min-width: 0;
+}
+
+/* NOTE */
+
+.note {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+}
+
+.noteInner {
+  max-width: 780px;
+}
+
+.note h2 {
+  margin: 0 0 1.5rem;
+
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.noteInner > p:last-child {
+  max-width: 650px;
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 800px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero,
+  .contact,
+  .note {
+    padding: 4.5rem 0;
+  }
+
+  .heading {
+    font-size: clamp(2.8rem, 14vw, 4rem);
+  }
+}

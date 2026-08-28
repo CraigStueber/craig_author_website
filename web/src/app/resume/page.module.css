@@ -1,0 +1,555 @@
+.eyebrow {
+  margin: 0 0 1rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------
+   HERO
+------------------------------------------------------- */
+
+.hero {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.6fr);
+  gap: clamp(3rem, 8vw, 8rem);
+
+  margin-bottom: var(--space-3xl);
+}
+
+.heading {
+  max-width: 850px;
+  margin: 0 0 2rem;
+
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.summary {
+  max-width: 720px;
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.8;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+
+  padding-top: 0.5rem;
+}
+
+.contact p {
+  margin: 0;
+
+  color: var(--color-text-muted);
+}
+
+.contact a {
+  padding-bottom: 0.15rem;
+
+  border-bottom: 1px solid transparent;
+
+  color: var(--color-accent);
+
+  transition: border-color var(--transition-fast);
+}
+
+.contact a:hover {
+  border-color: var(--color-accent);
+}
+
+.summaryDetail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+
+  max-width: 900px;
+  padding-top: var(--space-xl);
+
+  border-top: 1px solid var(--color-border);
+}
+
+.summaryDetail p {
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.8;
+}
+
+/* -------------------------------------------------------
+   SHARED SECTIONS
+------------------------------------------------------- */
+
+.section,
+.altSection,
+.skillsSection,
+.closing {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+}
+
+.altSection {
+  background: var(--color-surface-light);
+  border-block: 1px solid var(--color-border);
+}
+
+.sectionHeader {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.sectionHeader h2,
+.twoColumnHeader h2 {
+  max-width: 700px;
+  margin: 0;
+
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.twoColumnHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+/* -------------------------------------------------------
+   EXPERIENCE
+------------------------------------------------------- */
+
+.experience {
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.role {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.45fr) minmax(0, 1.55fr);
+  gap: clamp(2rem, 6vw, 6rem);
+
+  padding: 3rem 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dates {
+  margin: 0 0 0.4rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.location {
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  font-size: 0.9rem;
+}
+
+.company {
+  margin: 0 0 0.35rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.roleContent h3 {
+  margin: 0 0 0.5rem;
+
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 400;
+}
+
+.roleNote {
+  margin: 0 0 1rem;
+
+  color: var(--color-text-light);
+
+  font-size: 0.9rem;
+}
+
+.roleContent ul {
+  margin: 1.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.roleContent li {
+  margin-bottom: 0.8rem;
+  padding-left: 0.35rem;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.75;
+}
+
+.roleContent li::marker {
+  color: var(--color-accent);
+}
+
+/* -------------------------------------------------------
+   PROJECT / RESEARCH
+------------------------------------------------------- */
+
+.projectCopy {
+  max-width: 680px;
+}
+
+.projectCopy p {
+  color: var(--color-text-muted);
+
+  line-height: 1.8;
+}
+
+.projectCopy .lead {
+  color: var(--color-text);
+
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  line-height: 1.6;
+}
+
+.tech {
+  font-size: 0.92rem;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+
+  margin-top: var(--space-sm);
+  padding-bottom: 0.25rem;
+
+  border-bottom: 1px solid var(--color-accent);
+
+  color: var(--color-accent);
+
+  font-weight: 600;
+}
+
+.textLink span {
+  margin-left: 0.35rem;
+
+  transition: transform var(--transition-fast);
+}
+
+.textLink:hover span {
+  transform: translateX(4px);
+}
+
+/* -------------------------------------------------------
+   PUBLICATIONS
+------------------------------------------------------- */
+
+.publications {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.publications article {
+  padding: 2.5rem;
+}
+
+.publications article:first-child {
+  padding-left: 0;
+
+  border-right: 1px solid var(--color-border);
+}
+
+.publications article:last-child {
+  padding-right: 0;
+}
+
+.publicationMeta {
+  margin: 0 0 0.75rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.publications h3 {
+  margin: 0 0 1rem;
+
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+}
+
+.publications article > p:last-of-type {
+  color: var(--color-text-muted);
+
+  line-height: 1.8;
+}
+
+/* -------------------------------------------------------
+   EDUCATION
+------------------------------------------------------- */
+
+.education {
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.education article {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1.45fr);
+
+  padding: 2rem 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.school {
+  margin: 0;
+
+  color: var(--color-accent);
+
+  font-weight: 700;
+}
+
+.education h3 {
+  margin: 0 0 0.5rem;
+
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.education article > p:last-child {
+  grid-column: 2;
+
+  margin: 0;
+
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------
+   SKILLS
+------------------------------------------------------- */
+
+.skillsSection {
+  background: var(--color-text);
+  color: var(--color-background);
+}
+
+.skillsSection .eyebrow {
+  color: #c98655;
+}
+
+.skillsSection .sectionHeader h2 {
+  color: var(--color-background);
+}
+
+.skillGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.skillGroup {
+  padding-top: var(--space-xl);
+
+  border-top: 1px solid #4a4741;
+}
+
+.skillGroup h3 {
+  margin: 0 0 1.5rem;
+
+  color: var(--color-background);
+
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skillList span {
+  padding: 0.4rem 0.7rem;
+
+  border: 1px solid #4a4741;
+  border-radius: var(--radius-sm);
+
+  color: #c8c0b5;
+
+  font-size: 0.82rem;
+}
+
+.competencies {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-2xl);
+
+  border-top: 1px solid #4a4741;
+}
+
+.competencies p {
+  color: #c8c0b5;
+
+  line-height: 1.75;
+}
+
+.competencies .competencyLabel {
+  margin-bottom: 0.5rem;
+
+  color: #c98655;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------
+   CLOSING
+------------------------------------------------------- */
+
+.closingInner {
+  max-width: 850px;
+}
+
+.closing h2 {
+  margin: 0 0 1.5rem;
+
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.closingInner > p:not(.eyebrow) {
+  max-width: 650px;
+
+  color: var(--color-text-muted);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.primaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  margin-top: var(--space-lg);
+  padding: 0.75rem 1.3rem;
+
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+
+  color: #ffffff;
+
+  font-weight: 600;
+}
+
+.primaryAction:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+/* -------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------- */
+
+@media (max-width: 850px) {
+  .heroGrid,
+  .twoColumnHeader {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryDetail {
+    grid-template-columns: 1fr;
+  }
+
+  .role {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .publications {
+    grid-template-columns: 1fr;
+  }
+
+  .publications article,
+  .publications article:first-child,
+  .publications article:last-child {
+    padding: 2.5rem 0;
+
+    border-right: 0;
+  }
+
+  .publications article:first-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .skillGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .competencies {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero,
+  .section,
+  .altSection,
+  .skillsSection,
+  .closing {
+    padding: 4.5rem 0;
+  }
+
+  .heading {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+
+  .education article {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .education article > p:last-child {
+    grid-column: 1;
+  }
+
+  .primaryAction {
+    width: 100%;
+  }
+}

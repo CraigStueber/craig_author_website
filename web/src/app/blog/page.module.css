@@ -1,0 +1,145 @@
+.eyebrow {
+  margin: 0 0 1rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------
+   HERO
+------------------------------------------------------- */
+
+.hero {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.heading {
+  max-width: 1000px;
+  margin: 0 0 2rem;
+
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.introduction {
+  max-width: 720px;
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: clamp(1.08rem, 2vw, 1.25rem);
+  line-height: 1.8;
+}
+
+/* -------------------------------------------------------
+   POSTS
+------------------------------------------------------- */
+
+.posts {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+
+  background: var(--color-surface-light);
+}
+
+.postsHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-xl);
+
+  margin-bottom: var(--space-2xl);
+}
+
+.postsHeader .eyebrow {
+  margin: 0;
+}
+
+.postsHeader > p:last-child {
+  max-width: 480px;
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.95rem;
+}
+
+/* -------------------------------------------------------
+   MOBILE
+------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 4.5rem 0;
+  }
+
+  .posts {
+    padding: 4rem 0;
+  }
+
+  .heading {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+
+  .postsHeader {
+    display: block;
+  }
+
+  .postsHeader .eyebrow {
+    margin-bottom: 0.75rem;
+  }
+}
+/* -------------------------------------------------------
+   FEATURED
+------------------------------------------------------- */
+
+.featured {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+
+  background: var(--color-background);
+}
+
+.sectionHeader {
+  margin-bottom: var(--space-2xl);
+}
+
+.sectionHeader .eyebrow {
+  margin: 0;
+}
+
+/* -------------------------------------------------------
+   EMPTY STATE
+------------------------------------------------------- */
+
+.empty {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+
+  background: var(--color-surface-light);
+}
+
+.empty h2 {
+  max-width: 700px;
+  margin: 0 0 1rem;
+
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.empty p:last-child {
+  max-width: 600px;
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.8;
+}

@@ -1,0 +1,24 @@
+.empty {
+  max-width: 600px;
+
+  padding: var(--space-3xl) 0;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.emptyLabel {
+  margin-bottom: 0.75rem;
+
+  color: var(--color-text);
+
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+}
+
+.empty > p:last-child {
+  margin: 0;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.75;
+}

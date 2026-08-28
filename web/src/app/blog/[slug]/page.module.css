@@ -1,0 +1,415 @@
+/* -------------------------------------------------------
+   HERO
+------------------------------------------------------- */
+
+.hero {
+  padding: clamp(5rem, 9vw, 8rem) 0 clamp(4rem, 7vw, 6rem);
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.heroInner {
+  max-width: 960px;
+}
+
+.backLink {
+  display: inline-block;
+
+  margin-bottom: var(--space-2xl);
+
+  color: var(--color-accent);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  margin-bottom: 1.25rem;
+}
+
+.tags span {
+  color: var(--color-accent);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 950px;
+  margin: 0 0 1.75rem;
+
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.excerpt {
+  max-width: 780px;
+  margin: 0 0 var(--space-xl);
+
+  color: var(--color-text-muted);
+
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.75;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+
+  color: var(--color-text-light);
+
+  font-size: 0.88rem;
+}
+
+.dot {
+  color: var(--color-border-dark);
+}
+
+/* -------------------------------------------------------
+   HERO IMAGE
+------------------------------------------------------- */
+
+.heroImageSection {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.heroFigure {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.heroImage {
+  display: block;
+
+  width: 100%;
+  max-height: 680px;
+
+  border-radius: var(--radius-sm);
+
+  object-fit: cover;
+}
+
+/* -------------------------------------------------------
+   ARTICLE
+------------------------------------------------------- */
+
+.article {
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(6rem, 10vw, 9rem);
+}
+
+.articleGrid {
+  display: grid;
+  grid-template-columns: minmax(0, var(--reading-width));
+  justify-content: center;
+}
+
+.articleBody {
+  min-width: 0;
+
+  color: var(--color-text);
+
+  font-size: clamp(1.05rem, 1.5vw, 1.14rem);
+
+  line-height: 1.9;
+}
+
+/* Paragraphs */
+
+.articleBody p {
+  margin: 0 0 1.65em;
+}
+
+/* Headings */
+
+.articleBody h2,
+.articleBody h3,
+.articleBody h4 {
+  color: var(--color-text);
+
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.articleBody h2 {
+  margin: 2.4em 0 0.8em;
+
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+
+  letter-spacing: -0.035em;
+}
+
+.articleBody h3 {
+  margin: 2em 0 0.7em;
+
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+}
+
+.articleBody h4 {
+  margin: 1.8em 0 0.6em;
+
+  font-size: 1.25rem;
+}
+
+/* Links */
+
+.articleBody a {
+  color: var(--color-accent);
+
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* Lists */
+
+.articleBody ul,
+.articleBody ol {
+  margin: 0 0 1.75em;
+
+  padding-left: 1.5rem;
+}
+
+.articleBody li {
+  margin-bottom: 0.6em;
+}
+
+.articleBody li::marker {
+  color: var(--color-accent);
+}
+
+/* Quotes */
+
+.articleBody blockquote {
+  margin: 2.5em 0;
+
+  padding: 0.25rem 0 0.25rem 1.75rem;
+
+  border-left: 3px solid var(--color-accent);
+
+  color: var(--color-text-muted);
+
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+
+  line-height: 1.7;
+}
+
+.articleBody blockquote p {
+  margin: 0;
+}
+
+/* Horizontal rule */
+
+.articleBody hr {
+  width: 120px;
+
+  margin: 3.5rem auto;
+
+  border: 0;
+  border-top: 1px solid var(--color-border-dark);
+}
+
+/* Markdown images */
+
+.articleBody img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 2.5rem 0;
+
+  border-radius: var(--radius-sm);
+}
+
+/* Code */
+
+.articleBody code {
+  padding: 0.12rem 0.3rem;
+
+  background: var(--color-surface);
+
+  border-radius: 3px;
+
+  font-size: 0.88em;
+}
+
+.articleBody pre {
+  overflow-x: auto;
+
+  margin: 2rem 0;
+
+  padding: 1.25rem;
+
+  background: #24221f;
+  border-radius: var(--radius-sm);
+
+  color: #f3eee5;
+}
+
+.articleBody pre code {
+  padding: 0;
+
+  background: transparent;
+
+  color: inherit;
+}
+
+/* Tables */
+
+.articleBody table {
+  width: 100%;
+
+  margin: 2rem 0;
+
+  border-collapse: collapse;
+
+  font-size: 0.95rem;
+}
+
+.articleBody th,
+.articleBody td {
+  padding: 0.75rem 0.8rem;
+
+  border: 1px solid var(--color-border);
+
+  text-align: left;
+}
+
+.articleBody th {
+  background: var(--color-surface);
+
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------
+   ORIGINAL MEDIUM NOTE
+------------------------------------------------------- */
+
+.originalNote {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+
+  border-top: 1px solid var(--color-border);
+}
+
+.originalNote p {
+  margin-bottom: 0.5rem;
+
+  color: var(--color-text-light);
+
+  font-size: 0.9rem;
+}
+
+.originalNote a {
+  color: var(--color-accent);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* -------------------------------------------------------
+   ARTICLE FOOTER
+------------------------------------------------------- */
+
+.articleFooter {
+  padding: clamp(5rem, 9vw, 8rem) 0;
+
+  background: var(--color-text);
+
+  color: var(--color-background);
+}
+
+.footerInner {
+  max-width: 760px;
+}
+
+.footerEyebrow {
+  margin: 0 0 1rem;
+
+  color: #c98655;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.footerInner h2 {
+  margin: 0 0 1.25rem;
+
+  color: var(--color-background);
+
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.footerInner > p:not(.footerEyebrow) {
+  max-width: 600px;
+
+  color: #c8c0b5;
+
+  line-height: 1.8;
+}
+
+.blogLink {
+  display: inline-block;
+
+  margin-top: var(--space-lg);
+  padding-bottom: 0.2rem;
+
+  border-bottom: 1px solid #c98655;
+
+  color: #c98655;
+
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------
+   MOBILE
+------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 4.5rem 0 3.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
+  }
+
+  .heroImageSection {
+    padding-top: 2rem;
+  }
+
+  .article {
+    padding: 3.5rem 0 5rem;
+  }
+
+  .articleBody {
+    line-height: 1.8;
+  }
+
+  .articleBody blockquote {
+    padding-left: 1.2rem;
+  }
+
+  .articleFooter {
+    padding: 4.5rem 0;
+  }
+}
