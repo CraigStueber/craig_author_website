@@ -1,8 +1,6 @@
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict
-
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -107,7 +105,47 @@ class AdminPostCreateRequest(BaseModel):
     original_medium_url: str | None = None
     original_published_at: datetime | None = None
 
+class AdminPostUpdateRequest(BaseModel):
+    title: str = Field(
+        min_length=1,
+        max_length=250,
+    )
 
+    slug: str = Field(
+        min_length=1,
+        max_length=250,
+    )
+
+    excerpt: str | None = Field(
+        default=None,
+        max_length=1000,
+    )
+
+    content: str = ""
+
+    status: Literal[
+        "draft",
+        "published",
+    ]
+
+    hero_image_url: str | None = None
+    hero_image_alt: str | None = None
+
+    tags: list[str] = []
+
+    seo_title: str | None = Field(
+        default=None,
+        max_length=250,
+    )
+
+    seo_description: str | None = Field(
+        default=None,
+        max_length=500,
+    )
+
+    original_medium_url: str | None = None
+    original_published_at: datetime | None = None
+    
 class AdminPostDetailResponse(BaseModel):
     model_config = ConfigDict(
         from_attributes=True

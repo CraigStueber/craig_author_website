@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
+import Comments from "@/components/blog/Comments";
 import Container from "@/components/ui/Container";
 import { getPublishedPost, getPublishedPosts } from "@/lib/api";
 
@@ -178,7 +178,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </Container>
         </section>
-
+        <Container>
+          <Comments slug={post.slug} />
+        </Container>
         <footer className={styles.articleFooter}>
           <Container>
             <div className={styles.footerInner}>

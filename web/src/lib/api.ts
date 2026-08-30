@@ -2,9 +2,19 @@ import type {
   AdminPostCreate,
   AdminPostDetail,
   AdminPostSummary,
+  AdminPostUpdate,
   PostDetail,
   PostSummary,
 } from "@/types/blog";
+
+import type {
+  CommentCreateRequest,
+  CommentCreateResponse,
+  PublicComment,
+} from "@/types/comment";
+
+import type { AdminComment, CommentStatus } from "@/types/adminComment";
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
 
 interface NewsletterSubscribeResponse {
@@ -203,6 +213,155 @@ export async function createAdminPost(
 
   if (!response.ok) {
     throw new Error(data.detail ?? "Unable to create post.");
+  }
+
+  return data;
+}
+export async function getComments(slug: string): Promise<PublicComment[]> {
+  const response = await fetch(
+    `${API_BASE_URL}/posts/${encodeURIComponent(slug)}/comments`,
+  );
+
+  if (!response.ok) {
+    throw new Error("Unable to load comments.");
+  }
+
+  return response.json();
+}
+
+export async function submitComment(
+  slug: string,
+  comment: CommentCreateRequest,
+): Promise<CommentCreateResponse> {
+  const response = await fetch(
+    `${API_BASE_URL}/posts/${encodeURIComponent(slug)}/comments`,
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(comment),
+    },
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.detail ?? "Unable to submit your comment.");
+  }
+
+  return data;
+}
+
+export async function getAdminComments(): Promise<AdminComment[] | null> {
+  const response = await fetch(`${API_BASE_URL}/admin/comments`, {
+    credentials: "include",
+  });
+
+  if (response.status === 401) {
+    return null;
+  }
+
+  if (!response.ok) {
+    throw new Error("Unable to load comments.");
+  }
+
+  return response.json();
+}
+
+export async function updateAdminCommentStatus(
+  commentId: string,
+  status: CommentStatus,
+): Promise<AdminComment | null> {
+  const response = await fetch(
+    `${API_BASE_URL}/admin/comments/${commentId}/status`,
+    {
+      method: "PATCH",
+
+      credentials: "include",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        status,
+      }),
+    },
+  );
+
+  if (response.status === 401) {
+    return null;
+  }
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.detail ?? "Unable to update comment.");
+  }
+
+  return data;
+}
+export async function createAdminCommentReply(
+  commentId: string,
+  body: string,
+): Promise<AdminComment | null> {
+  const response = await fetch(
+    `${API_BASE_URL}/admin/comments/${commentId}/reply`,
+    {
+      method: "POST",
+
+      credentials: "include",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        body,
+      }),
+    },
+  );
+
+  if (response.status === 401) {
+    return null;
+  }
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.detail ?? "Unable to post reply.");
+  }
+
+  return data;
+}
+
+export async function updateAdminPost(
+  postId: string,
+  post: AdminPostUpdate,
+): Promise<AdminPostDetail | null> {
+  const response = await fetch(
+    `${API_BASE_URL}/admin/posts/${encodeURIComponent(postId)}`,
+    {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
+    },
+  );
+
+  if (response.status === 401) {
+    return null;
+  }
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.detail ?? "Unable to update post.");
   }
 
   return data;

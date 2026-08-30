@@ -99,7 +99,15 @@ export default function AdminDashboard() {
 
           <span>Manage posts →</span>
         </Link>
+        <Link href="/admin/comments" className={styles.card}>
+          <p className={styles.cardLabel}>Blog</p>
 
+          <h2>Comments</h2>
+
+          <p>Review, approve, reject, and moderate reader comments.</p>
+
+          <span>Moderate comments →</span>
+        </Link>
         <Link href="/admin/subscribers" className={styles.card}>
           <p className={styles.cardLabel}>Newsletter</p>
 

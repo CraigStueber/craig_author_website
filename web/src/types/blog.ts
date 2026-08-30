@@ -99,3 +99,23 @@ export interface AdminPostCreate {
   original_medium_url?: string | null;
   original_published_at?: string | null;
 }
+export interface AdminPostUpdate {
+  title: string;
+  slug: string;
+
+  excerpt?: string | null;
+  content: string;
+
+  status: "draft" | "published";
+
+  hero_image_url?: string | null;
+  hero_image_alt?: string | null;
+
+  tags: string[];
+
+  seo_title?: string | null;
+  seo_description?: string | null;
+
+  original_medium_url?: string | null;
+  original_published_at?: string | null;
+}

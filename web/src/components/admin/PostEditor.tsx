@@ -5,10 +5,12 @@ import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { createAdminPost, uploadBlogImage } from "@/lib/api";
-
+import { createAdminPost, updateAdminPost, uploadBlogImage } from "@/lib/api";
+import type { AdminPostDetail } from "@/types/blog";
 import styles from "./PostEditor.module.css";
-
+interface PostEditorProps {
+  post?: AdminPostDetail;
+}
 function makeSlug(value: string) {
   return value
     .toLowerCase()
@@ -18,30 +20,40 @@ function makeSlug(value: string) {
     .replace(/^-+|-+$/g, "");
 }
 
-export default function PostEditor() {
+export default function PostEditor({ post }: PostEditorProps) {
   const router = useRouter();
 
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
-  const [slugTouched, setSlugTouched] = useState(false);
+  const [title, setTitle] = useState(post?.title ?? "");
 
-  const [excerpt, setExcerpt] = useState("");
+  const [slug, setSlug] = useState(post?.slug ?? "");
 
-  const [content, setContent] = useState("");
+  const [slugTouched, setSlugTouched] = useState(Boolean(post));
 
-  const [tags, setTags] = useState("");
+  const [excerpt, setExcerpt] = useState(post?.excerpt ?? "");
 
-  const [heroImageUrl, setHeroImageUrl] = useState<string | null>(null);
+  const [content, setContent] = useState(post?.content ?? "");
 
-  const [heroImageAlt, setHeroImageAlt] = useState("");
+  const [tags, setTags] = useState(post?.tags.join(", ") ?? "");
 
-  const [seoTitle, setSeoTitle] = useState("");
+  const [heroImageUrl, setHeroImageUrl] = useState<string | null>(
+    post?.hero_image_url ?? null,
+  );
 
-  const [seoDescription, setSeoDescription] = useState("");
+  const [heroImageAlt, setHeroImageAlt] = useState(post?.hero_image_alt ?? "");
 
-  const [originalMediumUrl, setOriginalMediumUrl] = useState("");
+  const [seoTitle, setSeoTitle] = useState(post?.seo_title ?? "");
 
-  const [originalPublishedAt, setOriginalPublishedAt] = useState("");
+  const [seoDescription, setSeoDescription] = useState(
+    post?.seo_description ?? "",
+  );
+
+  const [originalMediumUrl, setOriginalMediumUrl] = useState(
+    post?.original_medium_url ?? "",
+  );
+
+  const [originalPublishedAt, setOriginalPublishedAt] = useState(
+    post?.original_published_at ? post.original_published_at.slice(0, 10) : "",
+  );
 
   const [view, setView] = useState<"write" | "preview">("write");
 
@@ -90,7 +102,7 @@ export default function PostEditor() {
     setStatus("saving");
 
     try {
-      const result = await createAdminPost({
+      const payload = {
         title,
         slug,
         excerpt: excerpt || null,
@@ -99,7 +111,6 @@ export default function PostEditor() {
         status: postStatus,
 
         hero_image_url: heroImageUrl,
-
         hero_image_alt: heroImageAlt || null,
 
         tags: tags
@@ -108,15 +119,18 @@ export default function PostEditor() {
           .filter(Boolean),
 
         seo_title: seoTitle || null,
-
         seo_description: seoDescription || null,
 
         original_medium_url: originalMediumUrl || null,
 
         original_published_at: originalPublishedAt
-          ? new Date(originalPublishedAt).toISOString()
+          ? new Date(`${originalPublishedAt}T00:00:00Z`).toISOString()
           : null,
-      });
+      };
+
+      const result = post
+        ? await updateAdminPost(post.id, payload)
+        : await createAdminPost(payload);
 
       if (!result) {
         router.replace("/admin/login");
@@ -124,7 +138,6 @@ export default function PostEditor() {
       }
 
       router.push("/admin/posts");
-
       router.refresh();
     } catch (error) {
       setError(error instanceof Error ? error.message : "Unable to save post.");
@@ -132,11 +145,10 @@ export default function PostEditor() {
       setStatus("idle");
     }
   }
-
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    savePost("draft");
+    savePost(post?.status === "published" ? "published" : "draft");
   }
 
   const busy = status === "uploading" || status === "saving";
@@ -375,24 +387,43 @@ Write the article in Markdown...`}
           </div>
         </div>
       </section>
-
       <footer className={styles.actions}>
-        <button
-          type="submit"
-          className={styles.secondaryButton}
-          disabled={busy}
-        >
-          {status === "saving" ? "Saving..." : "Save Draft"}
-        </button>
+        {post?.status === "published" && (
+          <button
+            type="button"
+            className={styles.secondaryButton}
+            disabled={busy}
+            onClick={() => savePost("draft")}
+          >
+            Move to Draft
+          </button>
+        )}
 
         <button
           type="button"
-          className={styles.publishButton}
+          className={styles.secondaryButton}
           disabled={busy}
-          onClick={() => savePost("published")}
+          onClick={() =>
+            savePost(post?.status === "published" ? "published" : "draft")
+          }
         >
-          {status === "saving" ? "Saving..." : "Publish"}
+          {status === "saving"
+            ? "Saving..."
+            : post
+              ? "Save Changes"
+              : "Save Draft"}
         </button>
+
+        {post?.status !== "published" && (
+          <button
+            type="button"
+            className={styles.publishButton}
+            disabled={busy}
+            onClick={() => savePost("published")}
+          >
+            {status === "saving" ? "Publishing..." : "Publish"}
+          </button>
+        )}
       </footer>
     </form>
   );
