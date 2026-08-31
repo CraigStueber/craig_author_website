@@ -1,0 +1,181 @@
+.wrapper {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.message {
+  padding: 1.5rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+
+  background: var(--color-surface-light);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1.5rem;
+
+  padding-bottom: 1rem;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header h2 {
+  margin: 0 0 0.35rem;
+
+  color: var(--color-text);
+
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.email {
+  color: var(--color-accent);
+
+  font-size: 0.9rem;
+
+  text-decoration: none;
+}
+
+.email:hover {
+  text-decoration: underline;
+}
+
+.date {
+  flex-shrink: 0;
+
+  color: var(--color-text-light);
+
+  font-size: 0.8rem;
+}
+
+.subject {
+  display: flex;
+  align-items: baseline;
+
+  gap: 0.75rem;
+
+  margin-top: 1.2rem;
+}
+
+.subject span {
+  color: var(--color-text-light);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.subject strong {
+  color: var(--color-text);
+
+  font-size: 0.95rem;
+}
+
+.body {
+  margin-top: 1rem;
+
+  color: var(--color-text-muted);
+
+  font-size: 1rem;
+  line-height: 1.75;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 1.5rem;
+}
+
+.deleteButton {
+  padding: 0.6rem 0.9rem;
+
+  border: 1px solid #c98d85;
+
+  background: transparent;
+  color: #8b352d;
+
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #f3dfdc;
+}
+
+.deleteButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.state,
+.error,
+.empty {
+  padding: 2.5rem 1.5rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+
+  background: var(--color-surface-light);
+
+  text-align: center;
+}
+
+.state,
+.empty {
+  color: var(--color-text-muted);
+}
+
+.error {
+  color: #8b352d;
+}
+
+.empty p {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .message {
+    padding: 1.2rem;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .date {
+    flex-shrink: 1;
+  }
+
+  .subject {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .deleteButton {
+    width: 100%;
+  }
+}

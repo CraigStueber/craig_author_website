@@ -1,16 +1,36 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useId, useState } from "react";
 
 import { subscribeToNewsletter } from "@/lib/api";
 
 import styles from "./NewsletterForm.module.css";
 
-export default function NewsletterForm() {
+interface NewsletterFormProps {
+  eyebrow?: string;
+  heading?: string;
+  description?: string;
+  buttonLabel?: string;
+  note?: string;
+  variant?: "light" | "dark";
+}
+
+export default function NewsletterForm({
+  eyebrow,
+  heading,
+  description,
+  buttonLabel = "Join the Newsletter",
+  note,
+  variant = "light",
+}: NewsletterFormProps) {
+  const emailId = useId();
+
   const [email, setEmail] = useState("");
+
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
+
   const [message, setMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -41,41 +61,57 @@ export default function NewsletterForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.fields}>
-        <label htmlFor="newsletter-email" className={styles.srOnly}>
-          Email address
-        </label>
+    <div
+      className={`${styles.wrapper} ${
+        variant === "dark" ? styles.dark : styles.light
+      }`}
+    >
+      <div className={styles.copy}>
+        {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
 
-        <input
-          id="newsletter-email"
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="Your email address"
-          autoComplete="email"
-          required
-          disabled={status === "loading"}
-          className={styles.input}
-        />
+        {heading && <h2 className={styles.heading}>{heading}</h2>}
 
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className={styles.button}
-        >
-          {status === "loading" ? "Joining..." : "Join the Newsletter"}
-        </button>
+        {description && <p className={styles.description}>{description}</p>}
       </div>
 
-      {message && (
-        <p
-          className={status === "error" ? styles.error : styles.message}
-          role="status"
-        >
-          {message}
-        </p>
-      )}
-    </form>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.fields}>
+          <label htmlFor={emailId} className={styles.srOnly}>
+            Email address
+          </label>
+
+          <input
+            id={emailId}
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Your email address"
+            autoComplete="email"
+            required
+            disabled={status === "loading"}
+            className={styles.input}
+          />
+
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className={styles.button}
+          >
+            {status === "loading" ? "Joining..." : buttonLabel}
+          </button>
+        </div>
+
+        {message && (
+          <p
+            className={status === "error" ? styles.error : styles.message}
+            role="status"
+          >
+            {message}
+          </p>
+        )}
+
+        {note && !message && <p className={styles.note}>{note}</p>}
+      </form>
+    </div>
   );
 }

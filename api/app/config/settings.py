@@ -7,6 +7,15 @@ API_DIR = Path(__file__).resolve().parents[2]
 
 
 class Settings(BaseSettings):
+    openai_api_key: str
+    resend_api_key: str
+
+    email_from: str
+    admin_email: str
+
+    site_url: str
+    api_url: str
+
     database_url: str
 
     admin_username: str
@@ -23,5 +32,6 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         extra="ignore",
     )
+
 
 settings = Settings()

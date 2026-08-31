@@ -1,0 +1,190 @@
+.page {
+  min-height: calc(100vh - var(--header-height));
+
+  display: flex;
+  align-items: center;
+
+  padding: clamp(5rem, 10vw, 8rem) 0;
+
+  background: var(--color-background);
+}
+
+.card {
+  width: min(100%, 680px);
+  margin: 0 auto;
+
+  padding: clamp(2rem, 5vw, 4rem);
+
+  border: 1px solid var(--color-border);
+
+  background: var(--color-surface-light);
+
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+
+  color: var(--color-accent);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.card h1 {
+  margin: 0 0 1.25rem;
+
+  color: var(--color-text);
+
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.copy {
+  max-width: 520px;
+  margin: 0 auto 1.75rem;
+
+  color: var(--color-text-muted);
+
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.note {
+  max-width: 500px;
+  margin: -0.5rem auto 2rem;
+
+  color: var(--color-text-light);
+
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.confirmButton,
+.primaryLink,
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+
+  padding: 0.8rem 1.25rem;
+
+  border-radius: 2px;
+
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.confirmButton,
+.primaryLink {
+  border: 1px solid var(--color-accent);
+
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.confirmButton:hover:not(:disabled),
+.primaryLink:hover {
+  border-color: var(--color-accent-hover);
+
+  background: var(--color-accent-hover);
+}
+
+.confirmButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondaryLink {
+  border: 1px solid var(--color-border-dark);
+
+  background: transparent;
+  color: var(--color-text);
+}
+
+.secondaryLink:hover {
+  border-color: var(--color-text);
+
+  background: var(--color-surface);
+}
+
+.error {
+  max-width: 520px;
+
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.1rem;
+
+  border: 1px solid #d6a6a0;
+
+  background: #f5e4e1;
+  color: #8b352d;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.successMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3rem;
+  height: 3rem;
+
+  margin-bottom: 1.5rem;
+
+  border: 1px solid #9fb79f;
+  border-radius: 999px;
+
+  background: #e3ede3;
+  color: #3d6943;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.disclaimer {
+  max-width: 460px;
+
+  margin: 1.5rem auto 0;
+
+  color: var(--color-text-light);
+
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 600px) {
+  .page {
+    align-items: flex-start;
+
+    padding: 4rem 0;
+  }
+
+  .card {
+    padding: 2rem 1.4rem;
+  }
+
+  .confirmButton,
+  .primaryLink,
+  .secondaryLink {
+    width: 100%;
+  }
+}

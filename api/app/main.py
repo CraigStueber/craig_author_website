@@ -9,9 +9,12 @@ from app.routes.comments import router as comments_router
 from app.routes.admin_comments import (
     router as admin_comments_router,
 )
-
+from app.routes.admin_messages import (
+    router as admin_messages_router,
+)
 from app.routes.admin_auth import router as admin_auth_router
 from app.routes.admin_posts import router as admin_posts_router
+from app.routes import admin_subscribers
 
 app = FastAPI(
     title="Craig A. Stueber Author Website API",
@@ -38,3 +41,5 @@ app.include_router(comments_router)
 app.include_router(admin_comments_router)
 app.include_router(admin_auth_router)
 app.include_router(admin_posts_router)
+app.include_router(admin_subscribers.router)
+app.include_router(admin_messages_router)

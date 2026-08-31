@@ -6,7 +6,7 @@ import type {
   PostDetail,
   PostSummary,
 } from "@/types/blog";
-
+import type { AdminMessage } from "@/types/adminMessage";
 import type {
   CommentCreateRequest,
   CommentCreateResponse,
@@ -14,8 +14,8 @@ import type {
 } from "@/types/comment";
 
 import type { AdminComment, CommentStatus } from "@/types/adminComment";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
+import type { AdminSubscriber } from "@/types/subscriber";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 interface NewsletterSubscribeResponse {
   message: string;
@@ -338,6 +338,31 @@ export async function createAdminCommentReply(
   return data;
 }
 
+export async function getAdminPost(
+  postId: string,
+): Promise<AdminPostDetail | null> {
+  const response = await fetch(
+    `${API_BASE_URL}/admin/posts/${encodeURIComponent(postId)}`,
+    {
+      credentials: "include",
+    },
+  );
+
+  if (response.status === 401) {
+    return null;
+  }
+
+  if (response.status === 404) {
+    throw new Error("Post not found.");
+  }
+
+  if (!response.ok) {
+    throw new Error("Unable to load post.");
+  }
+
+  return response.json();
+}
+
 export async function updateAdminPost(
   postId: string,
   post: AdminPostUpdate,
@@ -365,4 +390,80 @@ export async function updateAdminPost(
   }
 
   return data;
+}
+export async function getAdminSubscribers(): Promise<AdminSubscriber[] | null> {
+  const response = await fetch(`${API_BASE_URL}/admin/subscribers`, {
+    credentials: "include",
+  });
+
+  if (response.status === 401) {
+    return null;
+  }
+
+  if (!response.ok) {
+    throw new Error("Unable to load newsletter subscribers.");
+  }
+
+  return response.json();
+}
+export async function confirmNewsletterSubscription(
+  token: string,
+): Promise<NewsletterSubscribeResponse> {
+  const response = await fetch(
+    `${API_BASE_URL}/newsletter/confirm?token=${encodeURIComponent(token)}`,
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.detail ?? "Unable to confirm your subscription.");
+  }
+
+  return data;
+}
+export async function getAdminMessages(): Promise<AdminMessage[] | null> {
+  const response = await fetch(`${API_BASE_URL}/admin/messages`, {
+    credentials: "include",
+  });
+
+  if (response.status === 401) {
+    return null;
+  }
+
+  if (!response.ok) {
+    throw new Error("Unable to load contact messages.");
+  }
+
+  return response.json();
+}
+export async function deleteAdminMessage(
+  messageId: string,
+): Promise<boolean | null> {
+  const response = await fetch(
+    `${API_BASE_URL}/admin/messages/${encodeURIComponent(messageId)}`,
+    {
+      method: "DELETE",
+      credentials: "include",
+    },
+  );
+
+  if (response.status === 401) {
+    return null;
+  }
+
+  if (!response.ok) {
+    let detail = "Unable to delete message.";
+
+    try {
+      const data = await response.json();
+
+      detail = data.detail ?? detail;
+    } catch {
+      // DELETE may not return a JSON body.
+    }
+
+    throw new Error(detail);
+  }
+
+  return true;
 }
