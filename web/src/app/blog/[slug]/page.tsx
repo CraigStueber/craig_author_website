@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+
 import Comments from "@/components/blog/Comments";
 import Container from "@/components/ui/Container";
-import { getPublishedPost, getPublishedPosts } from "@/lib/api";
+
+import { getPublishedPost } from "@/lib/api";
 
 import styles from "./page.module.css";
+
+export const dynamic = "force-dynamic";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -27,24 +33,6 @@ function formatDate(value: string | null) {
     timeZone: "UTC",
   }).format(new Date(value));
 }
-
-/*
- * Cloudflare static export needs to know every dynamic
- * blog route when the site builds.
- *
- * When we publish a post later, the CMS will trigger
- * a new Cloudflare build, and that build will generate
- * the new article page.
- */
-export async function generateStaticParams() {
-  const posts = await getPublishedPosts();
-
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
-
-export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -178,9 +166,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </Container>
         </section>
+
         <Container>
           <Comments slug={post.slug} />
         </Container>
+
         <footer className={styles.articleFooter}>
           <Container>
             <div className={styles.footerInner}>
