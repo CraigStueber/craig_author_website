@@ -1,4 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    Query,
+    status,
+)
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -21,6 +27,15 @@ router = APIRouter(
     response_model=list[PostSummaryResponse],
 )
 async def get_posts(
+    limit: int = Query(
+        default=20,
+        ge=1,
+        le=50,
+    ),
+    offset: int = Query(
+        default=0,
+        ge=0,
+    ),
     db: AsyncSession = Depends(get_db),
 ) -> list[PostSummaryResponse]:
     result = await db.execute(
@@ -30,8 +45,11 @@ async def get_posts(
             func.coalesce(
                 Post.published_at,
                 Post.created_at,
-            ).desc()
+            ).desc(),
+            Post.id.desc(),
         )
+        .offset(offset)
+        .limit(limit)
     )
 
     posts = result.scalars().all()
@@ -66,4 +84,3 @@ async def get_post(
         )
 
     return PostDetailResponse.model_validate(post)
-

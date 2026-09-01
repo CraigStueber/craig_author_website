@@ -87,29 +87,35 @@ export async function sendContactMessage(
   return data;
 }
 
-export async function getPublishedPosts(): Promise<PostSummary[]> {
-  const response = await fetch(`${API_BASE_URL}/posts`);
+interface PublishedPostOptions {
+  limit?: number;
+  offset?: number;
+}
+
+export async function getPublishedPosts(
+  options: PublishedPostOptions = {},
+): Promise<PostSummary[]> {
+  const params = new URLSearchParams();
+
+  if (options.limit !== undefined) {
+    params.set("limit", options.limit.toString());
+  }
+
+  if (options.offset !== undefined) {
+    params.set("offset", options.offset.toString());
+  }
+
+  const query = params.toString();
+
+  const response = await fetch(
+    `${API_BASE_URL}/posts${query ? `?${query}` : ""}`,
+    {
+      cache: "no-store",
+    },
+  );
 
   if (!response.ok) {
     throw new Error("Unable to load blog posts.");
-  }
-
-  return response.json();
-}
-
-export async function getPublishedPost(
-  slug: string,
-): Promise<PostDetail | null> {
-  const response = await fetch(
-    `${API_BASE_URL}/posts/${encodeURIComponent(slug)}`,
-  );
-
-  if (response.status === 404) {
-    return null;
-  }
-
-  if (!response.ok) {
-    throw new Error("Unable to load blog post.");
   }
 
   return response.json();

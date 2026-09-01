@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import FeaturedPost from "@/components/blog/FeaturedPost";
-import PostList from "@/components/blog/PostList";
+import LoadMorePosts from "@/components/blog/LoadMorePosts";
 import NewsletterSignup from "@/components/home/NewsletterSignup";
 import Container from "@/components/ui/Container";
 
@@ -18,10 +18,20 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await getPublishedPosts();
+  const PAGE_SIZE = 3;
 
-  const featuredPost = posts[0];
-  const remainingPosts = posts.slice(1);
+  const result = await getPublishedPosts({
+    limit: PAGE_SIZE + 1,
+    offset: 0,
+  });
+
+  const initialPosts = result.slice(0, PAGE_SIZE);
+
+  const hasMore = result.length > PAGE_SIZE;
+
+  const featuredPost = initialPosts[0];
+
+  const remainingPosts = initialPosts.slice(1);
 
   return (
     <main>
@@ -78,7 +88,11 @@ export default async function BlogPage() {
               </p>
             </div>
 
-            <PostList posts={remainingPosts} />
+            <LoadMorePosts
+              initialPosts={remainingPosts}
+              initialHasMore={hasMore}
+              initialOffset={initialPosts.length}
+            />
           </Container>
         </section>
       )}
