@@ -23,13 +23,17 @@ interface NewsletterSubscribeResponse {
 
 export async function subscribeToNewsletter(
   email: string,
+  turnstileToken: string,
 ): Promise<NewsletterSubscribeResponse> {
   const response = await fetch(`${API_BASE_URL}/newsletter/subscribe`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({
+      email,
+      turnstile_token: turnstileToken,
+    }),
   });
 
   const data = await response.json();
@@ -40,14 +44,13 @@ export async function subscribeToNewsletter(
 
   return data;
 }
-
-export interface ContactMessageRequest {
+interface ContactMessageRequest {
   name: string;
   email: string;
   subject: string;
   message: string;
+  turnstile_token: string;
 }
-
 interface ContactMessageResponse {
   message: string;
 }
@@ -66,9 +69,19 @@ export async function sendContactMessage(
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(
-      data.detail ?? "Unable to send your message. Please try again.",
-    );
+    const detail = data.detail;
+
+    if (typeof detail === "string") {
+      throw new Error(detail);
+    }
+
+    if (Array.isArray(detail) && detail.length > 0) {
+      const firstError = detail[0];
+
+      throw new Error(firstError.msg ?? "Please check the form and try again.");
+    }
+
+    throw new Error("Unable to send your message. Please try again.");
   }
 
   return data;

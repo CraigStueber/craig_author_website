@@ -6,6 +6,7 @@ from pydantic import BaseModel, EmailStr, ConfigDict
 
 class NewsletterSubscribeRequest(BaseModel):
     email: EmailStr
+    turnstile_token: str
 
 
 class NewsletterSubscribeResponse(BaseModel):

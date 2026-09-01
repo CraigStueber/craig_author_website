@@ -14,6 +14,7 @@ export interface CommentCreateRequest {
   name: string;
   email: string;
   body: string;
+  turnstile_token: string;
 }
 
 export interface CommentCreateResponse {

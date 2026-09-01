@@ -1,9 +1,10 @@
 import uuid
+
 from datetime import datetime, timezone
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import RedirectResponse
 from sqlalchemy import select
-
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config.settings import settings
@@ -16,6 +17,10 @@ from app.schemas.newsletter import (
 from app.services.email_service import (
     EmailServiceError,
     send_newsletter_confirmation_email,
+)
+from app.services.turnstile_service import (
+    TurnstileVerificationError,
+    verify_turnstile,
 )
 
 
@@ -63,6 +68,29 @@ async def subscribe(
     request: NewsletterSubscribeRequest,
     db: AsyncSession = Depends(get_db),
 ) -> NewsletterSubscribeResponse:
+    try:
+        turnstile_valid = await verify_turnstile(
+            token=request.turnstile_token,
+            expected_action="newsletter",
+        )
+    except TurnstileVerificationError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=(
+                "Unable to verify the security check. "
+                "Please try again."
+            ),
+        ) from exc
+
+    if not turnstile_valid:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=(
+                "Security verification failed. "
+                "Please try again."
+            ),
+        )
+
     email = request.email.lower().strip()
 
     result = await db.execute(
@@ -120,6 +148,8 @@ async def subscribe(
             "Please check your email to confirm your subscription."
         )
     )
+
+
 @router.get("/confirm")
 async def confirm_subscription(
     token: uuid.UUID,

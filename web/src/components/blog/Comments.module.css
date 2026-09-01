@@ -336,3 +336,7 @@
     width: 100%;
   }
 }
+.turnstile {
+  display: flex;
+  justify-content: flex-start;
+}

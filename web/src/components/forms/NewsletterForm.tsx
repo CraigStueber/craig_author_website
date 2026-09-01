@@ -2,6 +2,7 @@
 
 import { FormEvent, useId, useState } from "react";
 
+import TurnstileWidget from "@/components/forms/TurnstileWidget";
 import { subscribeToNewsletter } from "@/lib/api";
 
 import styles from "./NewsletterForm.module.css";
@@ -31,6 +32,10 @@ export default function NewsletterForm({
     "idle" | "loading" | "success" | "error"
   >("idle");
 
+  const [turnstileToken, setTurnstileToken] = useState("");
+
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
+
   const [message, setMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -40,11 +45,17 @@ export default function NewsletterForm({
       return;
     }
 
+    if (!turnstileToken) {
+      setStatus("error");
+      setMessage("Please complete the security verification.");
+      return;
+    }
+
     setStatus("loading");
     setMessage("");
 
     try {
-      const response = await subscribeToNewsletter(email);
+      const response = await subscribeToNewsletter(email, turnstileToken);
 
       setStatus("success");
       setMessage(response.message);
@@ -57,6 +68,10 @@ export default function NewsletterForm({
           ? error.message
           : "Unable to subscribe. Please try again.",
       );
+    } finally {
+      setTurnstileToken("");
+
+      setTurnstileResetKey((current) => current + 1);
     }
   }
 
@@ -75,6 +90,14 @@ export default function NewsletterForm({
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.turnstile}>
+          <TurnstileWidget
+            action="newsletter"
+            onVerify={setTurnstileToken}
+            resetKey={turnstileResetKey}
+          />
+        </div>
+
         <div className={styles.fields}>
           <label htmlFor={emailId} className={styles.srOnly}>
             Email address

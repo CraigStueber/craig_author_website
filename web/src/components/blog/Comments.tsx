@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
+import TurnstileWidget from "@/components/forms/TurnstileWidget";
 import { getComments, submitComment } from "@/lib/api";
 
 import type { PublicComment } from "@/types/comment";
@@ -28,10 +29,12 @@ export default function Comments({ slug }: CommentsProps) {
   >("loading");
 
   const [name, setName] = useState("");
-
   const [email, setEmail] = useState("");
-
   const [body, setBody] = useState("");
+
+  const [turnstileToken, setTurnstileToken] = useState("");
+
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
 
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "submitting" | "success" | "error"
@@ -71,6 +74,12 @@ export default function Comments({ slug }: CommentsProps) {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (!turnstileToken) {
+      setSubmitStatus("error");
+      setMessage("Please complete the security verification.");
+      return;
+    }
+
     setSubmitStatus("submitting");
     setMessage("");
 
@@ -79,6 +88,7 @@ export default function Comments({ slug }: CommentsProps) {
         name,
         email,
         body,
+        turnstile_token: turnstileToken,
       });
 
       setSubmitStatus("success");
@@ -95,6 +105,10 @@ export default function Comments({ slug }: CommentsProps) {
           ? error.message
           : "Unable to submit your comment.",
       );
+    } finally {
+      setTurnstileToken("");
+
+      setTurnstileResetKey((current) => current + 1);
     }
   }
 
@@ -224,6 +238,14 @@ export default function Comments({ slug }: CommentsProps) {
                 {body.length.toLocaleString()}
                 /5,000
               </p>
+            </div>
+
+            <div className={styles.turnstile}>
+              <TurnstileWidget
+                action="comment"
+                onVerify={setTurnstileToken}
+                resetKey={turnstileResetKey}
+              />
             </div>
 
             <div className={styles.actions}>

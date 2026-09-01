@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 
+import TurnstileWidget from "@/components/forms/TurnstileWidget";
 import { sendContactMessage } from "@/lib/api";
 
 import styles from "./ContactForm.module.css";
@@ -31,6 +32,10 @@ export default function ContactForm() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
+  const [turnstileToken, setTurnstileToken] = useState("");
+
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
+
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -39,6 +44,12 @@ export default function ContactForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!turnstileToken) {
+      setStatus("error");
+      setResponseMessage("Please complete the security verification.");
+      return;
+    }
 
     setStatus("loading");
     setResponseMessage("");
@@ -49,6 +60,7 @@ export default function ContactForm() {
         email,
         subject,
         message,
+        turnstile_token: turnstileToken,
       });
 
       setStatus("success");
@@ -66,6 +78,10 @@ export default function ContactForm() {
           ? error.message
           : "Unable to send your message. Please try again.",
       );
+    } finally {
+      setTurnstileToken("");
+
+      setTurnstileResetKey((current) => current + 1);
     }
   }
 
@@ -133,6 +149,14 @@ export default function ContactForm() {
           rows={8}
           required
           disabled={status === "loading"}
+        />
+      </div>
+
+      <div className={styles.turnstile}>
+        <TurnstileWidget
+          action="contact"
+          onVerify={setTurnstileToken}
+          resetKey={turnstileResetKey}
         />
       </div>
 

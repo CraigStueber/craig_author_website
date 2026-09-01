@@ -56,7 +56,10 @@
 
   resize: vertical;
 }
-
+.turnstile {
+  display: flex;
+  justify-content: flex-start;
+}
 .field input:focus,
 .field select:focus,
 .field textarea:focus {

@@ -23,6 +23,8 @@ class CommentCreateRequest(BaseModel):
         max_length=5000,
     )
 
+    turnstile_token: str
+
 
 class CommentCreateResponse(BaseModel):
     message: str

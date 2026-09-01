@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     supabase_service_role_key: str
 
     environment: str = "development"
-
+    turnstile_secret_key: str
     model_config = SettingsConfigDict(
         env_file=API_DIR / ".env",
         env_file_encoding="utf-8",

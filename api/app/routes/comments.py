@@ -15,6 +15,10 @@ from app.schemas.comment import (
     CommentCreateResponse,
     PublicCommentResponse,
 )
+from app.services.turnstile_service import (
+    TurnstileVerificationError,
+    verify_turnstile,
+)
 
 
 router = APIRouter(
@@ -33,6 +37,29 @@ async def create_comment(
     request: CommentCreateRequest,
     db: AsyncSession = Depends(get_db),
 ) -> CommentCreateResponse:
+    try:
+        turnstile_valid = await verify_turnstile(
+            token=request.turnstile_token,
+            expected_action="comment",
+        )
+    except TurnstileVerificationError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=(
+                "Unable to verify the security check. "
+                "Please try again."
+            ),
+        ) from exc
+
+    if not turnstile_valid:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=(
+                "Security verification failed. "
+                "Please try again."
+            ),
+        )
+
     post_result = await db.execute(
         select(Post).where(
             Post.slug == slug,
@@ -73,7 +100,7 @@ async def create_comment(
         email=str(request.email).lower().strip(),
         body=body,
 
-        # These values are ALWAYS controlled
+        # These values are always controlled
         # by the backend.
         status="pending",
         moderation_flags=[],
@@ -91,6 +118,7 @@ async def create_comment(
             "Your comment is awaiting approval."
         )
     )
+
 
 @router.get(
     "/{slug}/comments",

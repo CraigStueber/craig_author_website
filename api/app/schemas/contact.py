@@ -26,7 +26,7 @@ class ContactMessageRequest(BaseModel):
         min_length=10,
         max_length=5000,
     )
-
+    turnstile_token: str
 
 class ContactMessageResponse(BaseModel):
     message: str
