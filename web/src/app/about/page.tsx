@@ -48,7 +48,15 @@ export default function AboutPage() {
               I came to these questions from inside technology, not from outside
               it.
             </p>
-
+            <p>
+              I&apos;m also autistic, and I&apos;m proud of that part of who I
+              am. It shapes the way I see the world. I tend to notice systems,
+              patterns, inconsistencies, and assumptions that other people may
+              pass over, and I often find myself asking why something works the
+              way it does rather than simply accepting that it does. That
+              perspective has influenced both the way I work as an engineer and
+              the questions I explore as a writer.
+            </p>
             <p>
               I spend my professional life building software and working with
               increasingly capable artificial intelligence systems. I&apos;m
