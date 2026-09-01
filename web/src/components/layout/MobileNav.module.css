@@ -67,11 +67,11 @@
   width: min(280px, calc(100vw - 36px));
   padding: 0.75rem;
 
-  background: var(--color-surface-light);
+  background: #fbf9f5;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 
-  box-shadow: 0 12px 30px rgba(29, 28, 25, 0.08);
+  box-shadow: 0 16px 40px rgba(29, 28, 25, 0.18);
 
   z-index: 100;
 }
