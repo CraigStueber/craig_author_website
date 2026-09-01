@@ -1,0 +1,136 @@
+.hero {
+  padding: 4.5rem 0 3.5rem;
+}
+
+.heroInner {
+  max-width: var(--reading-width);
+}
+
+.backLink,
+.tags span,
+.title span,
+.excerpt span,
+.meta,
+.image,
+.articleBody span {
+  background: var(--color-surface);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.backLink {
+  width: 120px;
+  height: 0.9rem;
+  margin-bottom: 2.5rem;
+}
+
+.tags {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tags span {
+  width: 90px;
+  height: 1.6rem;
+}
+
+.tags span:last-child {
+  width: 120px;
+}
+
+.title {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.title span {
+  display: block;
+  width: 95%;
+  height: 3.5rem;
+}
+
+.title span:last-child {
+  width: 70%;
+}
+
+.excerpt {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.excerpt span {
+  display: block;
+  width: 90%;
+  height: 1.15rem;
+}
+
+.excerpt span:last-child {
+  width: 65%;
+}
+
+.meta {
+  width: 220px;
+  height: 1rem;
+}
+
+.imageSection {
+  padding-bottom: 4rem;
+}
+
+.image {
+  width: 100%;
+  min-height: 420px;
+}
+
+.article {
+  padding-bottom: 5rem;
+}
+
+.articleBody {
+  display: grid;
+  gap: 0.9rem;
+  max-width: var(--reading-width);
+  margin: 0 auto;
+}
+
+.articleBody span {
+  display: block;
+  height: 1rem;
+}
+
+.articleBody span:nth-child(3),
+.articleBody span:nth-child(6) {
+  width: 75%;
+  margin-bottom: 1.25rem;
+}
+
+.articleBody span:nth-child(7) {
+  width: 55%;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 0;
+  }
+
+  .title span {
+    height: 2.5rem;
+  }
+
+  .image {
+    min-height: 240px;
+  }
+}

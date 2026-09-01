@@ -69,7 +69,11 @@ async def admin_login(
         max_age=SESSION_MAX_AGE,
         httponly=True,
         secure=settings.environment == "production",
-        samesite="lax",
+        samesite=(
+            "none"
+            if settings.environment == "production"
+            else "lax"
+        ),
         path="/",
     )
 
@@ -104,7 +108,11 @@ async def admin_logout(
         path="/",
         secure=settings.environment == "production",
         httponly=True,
-        samesite="lax",
+        samesite=(
+            "none"
+            if settings.environment == "production"
+            else "lax"
+        ),
     )
 
     return AdminLogoutResponse(

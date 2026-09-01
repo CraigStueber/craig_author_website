@@ -1,0 +1,111 @@
+.hero {
+  padding: 5rem 0 4rem;
+}
+
+.content {
+  padding: 3rem 0 5rem;
+}
+
+.eyebrow {
+  margin-bottom: 1.25rem;
+
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.heading,
+.intro span,
+.image,
+.lineShort,
+.lineLong,
+.lineMedium {
+  background: var(--color-surface);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.heading {
+  width: min(720px, 90%);
+  height: 4rem;
+  margin-bottom: 2rem;
+}
+
+.intro {
+  display: grid;
+  gap: 0.65rem;
+
+  max-width: 680px;
+}
+
+.intro span {
+  display: block;
+  height: 1rem;
+}
+
+.intro span:last-child {
+  width: 70%;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 1fr;
+  gap: 2.5rem;
+
+  margin-top: 1.5rem;
+}
+
+.image {
+  min-height: 320px;
+}
+
+.cardCopy {
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+}
+
+.lineShort,
+.lineLong,
+.lineMedium {
+  height: 1.25rem;
+}
+
+.lineShort {
+  width: 35%;
+}
+
+.lineLong {
+  width: 90%;
+  height: 2.75rem;
+}
+
+.lineMedium {
+  width: 70%;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .image {
+    min-height: 220px;
+  }
+}
