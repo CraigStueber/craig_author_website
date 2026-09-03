@@ -37,8 +37,6 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
             loading="eager"
             fetchPriority="high"
             decoding="async"
-            width={1600}
-            height={1000}
           />
         ) : (
           <div className={styles.imagePlaceholder}>

@@ -36,8 +36,6 @@ export default function PostCard({ post }: PostCardProps) {
             className={styles.image}
             loading="lazy"
             decoding="async"
-            width={1600}
-            height={1000}
           />
         ) : (
           <div className={styles.imagePlaceholder}>
