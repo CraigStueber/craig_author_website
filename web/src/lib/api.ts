@@ -120,6 +120,24 @@ export async function getPublishedPosts(
 
   return response.json();
 }
+export async function getPublishedPost(
+  slug: string,
+): Promise<PostDetail | null> {
+  const response = await fetch(
+    `${API_BASE_URL}/posts/${encodeURIComponent(slug)}`,
+  );
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    throw new Error("Unable to load blog post.");
+  }
+
+  return response.json();
+}
+
 export interface AdminSession {
   authenticated: boolean;
   username: string;
