@@ -34,6 +34,11 @@ export default function FeaturedPost({ post }: FeaturedPostProps) {
             src={post.hero_image_url}
             alt={post.hero_image_alt ?? post.title}
             className={styles.image}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            width={1600}
+            height={1000}
           />
         ) : (
           <div className={styles.imagePlaceholder}>
